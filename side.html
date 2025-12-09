@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #d2e7fa;
+                font-family: monospace;
+            }
+
+            #Title {
+                font-size: 2rem;
+                font-weight: bold;  
+                color:#000000;
+
+                position: absolute;
+                margin: 0;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                line-height: 0.8;
+            }
+            
+            #TopBar {
+                width: 100%;
+                height: 40px;
+                top: 0px;
+                left: 0px;
+                background: #9ccfff;
+                position: absolute;
+            }
+
+            #ClearBnt {
+                background-color: #ffee00;
+                padding: 5px 12px;
+                font-size: 0.75rem;
+                font-weight: bold;
+                border-radius: 30px;
+                border: outset #000000;
+                border: solid;
+                transition: 0.30s ease;
+
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 5px;
+            }
+                
+            #ClearBnt:hover {
+                background-color: #ffc800;
+            }
+
+            #RunScript {
+                background-color: #ffee00;
+                padding: 5px 12px;
+                font-size: 1.75rem;
+                font-weight: bold;
+                border-radius: 10px;
+                border: outset #000000;
+                border: solid;
+                transition: 0.30s ease;
+
+                position: absolute;
+                top: calc(100% - 100px);
+                right: 10px;
+                bottom: 10px;
+                left: calc(100% - 70px);
+            }
+
+            #CodeInput {
+                background-color: #9ccfff;
+                border-radius: 15px;
+                border-style: solid;
+                border-color: #000000;
+
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                right: 80px;
+                top: calc(100% - 100px);
+            }
+
+            
+
+            #Console {
+                background: #000000;
+                position: absolute;
+
+                top: 50px;
+                left: 10px;
+                right: 10px;
+
+                height: calc(100% - 50px - 10px - 100px);
+
+                overflow-y: auto;
+
+                border-radius: 15px;
+            }
+
+            .ConsoleText {
+                color: rgb(255, 255, 255);
+                font-size: 1rem;
+
+            
+                line-height: 0;
+                margin-top: calc(0.25rem + 5px);
+                margin-left: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="TopBar">
+            <p id="Title">JavaScript Console</p>    
+            <button id="ClearBnt">Clear Console</button>
+        </div>
+
+        <div id="Console"></div>
+
+        <input id="CodeInput" placeholder="Type or Paist your code here"></input>
+        <button id="RunScript">▶</button>
+        <script>
+            document.getElementById("ClearBnt").addEventListener("click", ClearConsole);
+            document.getElementById("RunScript").addEventListener("click", RunJs);
+
+            function ClearConsole(){
+                Console.innerHTML = "";
+            }
+
+            function RunJs(){
+                let result = eval(CodeInput.value);
+                PrintToConsole(result);
+            }
+
+            function PrintToConsole(text) {
+                let NewLine = document.createElement("p");
+                NewLine.className = "ConsoleText";
+                NewLine.textContent = text;
+
+                Console.appendChild(NewLine);
+
+                Console.scrollTop = Console.scrollHeight;
+            }
+        </script>
+    </body>
+</html>
