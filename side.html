@@ -132,7 +132,8 @@
             }
 
             function RunJs(){
-                PrintToConsole(CodeInput.value);
+                PrintToConsole(eval('('+$(CodeInput.value)).val()+')');
+                
                 CodeInput.value = ""
                 
             }
