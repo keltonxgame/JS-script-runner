@@ -66,6 +66,10 @@
                 left: calc(100% - 70px);
             }
 
+            #RunScript:hover {
+                background-color: #ffc800;
+            }
+
             #CodeInput {
                 background-color: #9ccfff;
                 border-radius: 15px;
@@ -117,29 +121,32 @@
 
         <div id="Console"></div>
 
-        <input id="CodeInput" placeholder="Type or Paist your code here"></input>
+        <textarea id="CodeInput" placeholder="Type or paist your JS code"></textarea>
         <button id="RunScript">▶</button>
         <script>
             document.getElementById("ClearBnt").addEventListener("click", ClearConsole);
             document.getElementById("RunScript").addEventListener("click", RunJs);
 
             function ClearConsole(){
-                Console.innerHTML = "";
+                Console.innerHTML = "<p class=\"ConsoleText\">Text Cleared!</p>";
             }
 
             function RunJs(){
-                let result = eval(CodeInput.value);
-                PrintToConsole(result);
+                PrintToConsole(CodeInput.value);
+                CodeInput.value = ""
+                
             }
 
             function PrintToConsole(text) {
-                let NewLine = document.createElement("p");
-                NewLine.className = "ConsoleText";
-                NewLine.textContent = text;
+                let ParsText = text.split("\n");
 
-                Console.appendChild(NewLine);
-
-                Console.scrollTop = Console.scrollHeight;
+                for (let i = 0; i <= ParsText.length; i++) {
+                    let NewLine = document.createElement("p");
+                    NewLine.className = "ConsoleText";
+                    NewLine.textContent = ParsText[i];
+                    Console.appendChild(NewLine);
+                    Console.scrollTop = Console.scrollHeight;
+                }
             }
         </script>
     </body>
