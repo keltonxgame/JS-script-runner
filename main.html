@@ -49,6 +49,38 @@
                 background-color: #ffc800;
             }
 
+            #RunScript {
+                background-color: #ffee00;
+                padding: 5px 12px;
+                font-size: 1.75rem;
+                font-weight: bold;
+                border-radius: 10px;
+                border: outset #000000;
+                border: solid;
+                transition: 0.30s ease;
+
+                position: absolute;
+                top: calc(100% - 100px);
+                right: 10px;
+                bottom: 10px;
+                left: calc(100% - 70px);
+            }
+
+            #CodeInput {
+                background-color: #9ccfff;
+                border-radius: 15px;
+                border-style: solid;
+                border-color: #000000;
+
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                right: 80px;
+                top: calc(100% - 100px);
+            }
+
+            
+
             #Console {
                 background: #000000;
                 position: absolute;
@@ -85,12 +117,13 @@
 
         <div id="Console"></div>
 
-
+        <input id="CodeInput" placeholder="Type or Paist your code here"></input>
+        <button id="RunScript">▶</button>
         <script>
             document.getElementById("ClearBnt").addEventListener("click", test);
             
             function test() {
-                PrintToConsole(prompt("print what?"))
+                PrintToConsole(CodeInput.text)
             }
 
             function PrintToConsole(text) {
